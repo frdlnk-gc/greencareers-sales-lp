@@ -61,24 +61,12 @@
   .logo {
     display: inline-flex;
     align-items: center;
-    color: var(--ink);
-    font-weight: 800;
-    font-size: 14px;
-    letter-spacing: -0.01em;
-  }
-  .logo-mark {
-    width: 38px;
     height: 38px;
-    border: 1.5px solid var(--ink);
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1.05;
-    text-align: center;
-    padding: 4px;
+  }
+  .logo img {
+    height: 100%;
+    width: auto;
+    display: block;
   }
   .progress {
     flex: 1;
@@ -426,6 +414,51 @@
     pointer-events: none;
   }
 
+  /* ============ BACK LINK (oberhalb der Antworten) ============ */
+  .back-link {
+    background: none;
+    border: none;
+    color: var(--ink-mute);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    margin-bottom: -6px;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: var(--ink); }
+  .back-link svg { width: 14px; height: 14px; }
+
+  /* ============ DATENSCHUTZ-CHECKBOX ============ */
+  .consent-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .consent-row input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--green);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .consent-row label {
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .consent-row a {
+    color: var(--green-darker);
+    text-decoration: underline;
+  }
+
   /* ============ ERROR ============ */
   .error-msg {
     background: #fff3f3;
@@ -455,8 +488,8 @@
 
 <div class="stage">
   <div class="topbar">
-    <a href="index.html" class="logo">
-      <span class="logo-mark">Green<br/>Careers</span>
+    <a href="index.html" class="logo" aria-label="GreenCareers">
+      <img src="assets/logo-dark.png" alt="GreenCareers" />
     </a>
     <div class="progress" aria-hidden="true">
       <div class="progress-bar" id="progress-bar"></div>
@@ -511,7 +544,11 @@
     <!-- ========== SLIDE 3: Sport-Mindset ========== -->
     <div class="slide" data-slide="3" data-track="quiz_sport">
       <div>
-        <div class="slide-eyebrow">Frage 3 von 8</div>
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Zurück
+        </button>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 3 von 8</div>
         <h2>Wie ist dein <span class="hl">Verhältnis zum Sport</span>?</h2>
         <p class="slide-sub">Spielt im Sales eine Rolle — Disziplin, Wettkampf, Durchhaltevermögen kommen oft genau daher.</p>
       </div>
@@ -539,8 +576,8 @@
       </div>
       <div class="info-slide">
         <div class="info-slide-eyebrow">Marktführer · Recruiting · Grüne Branche</div>
-        <h3>GreenCareers — Recruiting-Software für die grüne Branche.</h3>
-        <p>GaLaBau, Baumschulen, Landwirtschaft, Tiefbau, Pflanzenhandel. Du verkaufst kein Snake Oil — sondern eine Software, die GaLaBau-Betrieben in 21 Tagen passende Mitarbeiter liefert.</p>
+        <h3>Du verkaufst nichts, wofür du dich beim Closen rechtfertigen musst.</h3>
+        <p>GreenCareers ist die führende Recruiting-Plattform für die grüne Branche — GaLaBau, Baumschulen, Landwirtschaft, Tiefbau, Pflanzenhandel. Betriebe in der grünen Branche besetzen ihre offenen Stellen über uns in durchschnittlich 45 Tagen. 500+ zahlende Kunden vertrauen uns. Es funktioniert — und das macht Cold Calling ehrlich gesagt einfacher.</p>
         <div class="info-stats">
           <div>
             <div class="info-stat-num">500+</div>
@@ -568,7 +605,11 @@
     <!-- ========== SLIDE 5: Wechselbereitschaft ========== -->
     <div class="slide" data-slide="5" data-track="quiz_wechsel">
       <div>
-        <div class="slide-eyebrow">Frage 5 von 8</div>
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Zurück
+        </button>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 5 von 8</div>
         <h2>Wann könntest du <span class="hl">frühestens starten</span>?</h2>
       </div>
       <div class="answers">
@@ -581,7 +622,7 @@
         <button class="answer-btn" data-value="2-3m" data-key="wechselbereitschaft" data-next="6">
           <span class="answer-icon">🗓️</span> In 2 – 3 Monaten (Kündigungsfrist)
         </button>
-        <button class="answer-btn" data-value="passiv" data-key="wechselbereitschaft" data-next="6">
+        <button class="answer-btn" data-value="passiv" data-key="wechselbereitschaft" data-next="reject_passive">
           <span class="answer-icon">🤔</span> Schaue mich nur passiv um
         </button>
       </div>
@@ -590,16 +631,20 @@
     <!-- ========== SLIDE 6: 2 Probetage ========== -->
     <div class="slide" data-slide="6" data-track="quiz_probetage">
       <div>
-        <div class="slide-eyebrow">Frage 6 von 8</div>
-        <h2>Bist du bereit für <span class="hl">2 volle Probetage</span>?</h2>
-        <p class="slide-sub">Vor der Einstellung machen wir 2 volle Probetage unter der Woche. Anders geht es bei uns nicht — wir wollen ehrlich sein, bevor du investierst.</p>
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Zurück
+        </button>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 6 von 8</div>
+        <h2>Wärst du grundsätzlich bereit für <span class="hl">2 Probetage</span>?</h2>
+        <p class="slide-sub">Vor einer Einstellung machen wir gemeinsam 2 Probetage. Damit du und wir wirklich aussagekräftig identifizieren können, ob es inhaltlich und persönlich passt — bevor beide Seiten in 3 Monaten merken, dass es nicht stimmt. Das ist genauso in deinem Sinne wie in unserem.</p>
       </div>
       <div class="answers">
         <button class="answer-btn" data-value="true" data-key="zwei_probetage_ok" data-next="7">
-          <span class="answer-icon">✅</span> Ja, klar — kriege ich hin
+          <span class="answer-icon">✅</span> Ja, das macht Sinn
         </button>
-        <button class="answer-btn" data-value="false" data-key="zwei_probetage_ok" data-next="reject_probetage">
-          <span class="answer-icon">⏰</span> Schwierig zeitlich
+        <button class="answer-btn" data-value="unsicher" data-key="zwei_probetage_ok" data-next="7">
+          <span class="answer-icon">💬</span> Lass uns das im Gespräch klären
         </button>
       </div>
     </div>
@@ -646,7 +691,12 @@
       </div>
       <input class="text-input" type="email" id="email" placeholder="E-Mail" autocomplete="email" />
       <input class="text-input" type="tel" id="telefon" placeholder="Mobilnummer (für WhatsApp)" autocomplete="tel" />
-      <p class="input-info">Mit dem Klick auf "Bewerbung absenden" stimmst du unseren Datenschutzhinweisen zu.</p>
+      <div class="consent-row">
+        <input type="checkbox" id="consent-datenschutz" />
+        <label for="consent-datenschutz">
+          Ich habe die <a href="https://www.green-careers.de/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzhinweise</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Bewerbung verwendet und per WhatsApp kontaktiert werden.
+        </label>
+      </div>
       <div class="error-msg" id="contact-error"></div>
       <div class="actions">
         <button class="btn btn-secondary" data-back>Zurück</button>
@@ -682,6 +732,25 @@
         </div>
         <div id="soft-reject-done" style="display:none;">
           <p style="color:var(--green-darker); font-weight:700;">✓ Eingetragen — wir melden uns, sobald wir Junior-Slots öffnen.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== REJECT: passiv (Soft) ========== -->
+    <div class="slide end-card" data-slide="reject_passive" data-track="quiz_reject_passive">
+      <div>
+        <div class="reject-icon">⏳</div>
+        <h2>Wir suchen aktuell <span class="hl">aktiv Suchende</span>.</h2>
+        <p>Du brauchst spätestens in 2 – 3 Monaten den nächsten Schritt — sonst kostet uns beiden ein langer Bewerbungsprozess unnötig Zeit. Wenn du gerade nur passiv schaust, lass uns deine Mail da. Wir melden uns wieder, wenn du aktiv wechseln möchtest.</p>
+        <div id="passive-form">
+          <input class="text-input" type="email" id="passive-email" placeholder="Deine E-Mail" style="margin-bottom:12px;" />
+          <input class="text-input" type="text" id="passive-vorname" placeholder="Vorname (optional)" style="margin-bottom:16px;" />
+          <button class="btn btn-primary" id="btn-passive" style="width:100%;justify-content:center;">
+            Auf die Wiedervorlage-Liste
+          </button>
+        </div>
+        <div id="passive-done" style="display:none;">
+          <p style="color:var(--green-darker); font-weight:700;">✓ Eingetragen — bis dann.</p>
         </div>
       </div>
     </div>
@@ -807,6 +876,7 @@
     const nachname = document.getElementById("nachname").value.trim();
     const email    = document.getElementById("email").value.trim();
     const telefon  = document.getElementById("telefon").value.trim();
+    const consent  = document.getElementById("consent-datenschutz").checked;
 
     if (!vorname || !nachname) {
       showError("Bitte gib deinen Vor- und Nachnamen ein.");
@@ -818,6 +888,10 @@
     }
     if (!telefon || telefon.replace(/\D/g, "").length < 7) {
       showError("Bitte gib eine gültige Mobilnummer ein.");
+      return;
+    }
+    if (!consent) {
+      showError("Bitte bestätige die Datenschutzhinweise, um fortzufahren.");
       return;
     }
 
@@ -888,6 +962,41 @@
       btnSR.innerHTML = "Auf die Wiedervorlage-Liste";
     }
   });
+
+  // ============ PASSIVE SOFT-REJECT ============
+  const btnPassive = document.getElementById("btn-passive");
+  if (btnPassive) {
+    btnPassive.addEventListener("click", async () => {
+      const email   = document.getElementById("passive-email").value.trim();
+      const vorname = document.getElementById("passive-vorname").value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert("Bitte gib eine gültige E-Mail-Adresse ein.");
+        return;
+      }
+      btnPassive.disabled = true;
+      btnPassive.innerHTML = "Sende...";
+      try {
+        const res = await fetch(SOFT_REJECT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Webhook-Secret": WEBHOOK_SECRET,
+          },
+          body: JSON.stringify(Object.assign({
+            email, vorname,
+            reason: "passive_search_only",
+          }, getTracking())),
+        });
+        if (!res.ok) throw new Error("Server error " + res.status);
+        document.getElementById("passive-form").style.display = "none";
+        document.getElementById("passive-done").style.display = "block";
+      } catch (e) {
+        alert("Eintragung fehlgeschlagen. Bitte erneut versuchen.");
+        btnPassive.disabled = false;
+        btnPassive.innerHTML = "Auf die Wiedervorlage-Liste";
+      }
+    });
+  }
 
   // ============ INIT ============
   updateProgress();

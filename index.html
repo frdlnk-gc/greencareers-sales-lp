@@ -67,25 +67,12 @@
   .logo {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    color: white;
-    font-weight: 800;
-    font-size: 18px;
-    letter-spacing: -0.01em;
+    height: 44px;
   }
-  .logo-mark {
-    width: 42px;
-    height: 42px;
-    border: 1.5px solid rgba(255,255,255,0.85);
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1.05;
-    text-align: center;
-    padding: 4px;
+  .logo img {
+    height: 100%;
+    width: auto;
+    display: block;
   }
   .nav-cta {
     display: inline-flex;
@@ -569,17 +556,22 @@
   }
   .career-step.active .step-desc { border-top-color: rgba(0,0,0,0.08); }
 
-  /* ============ DAY IN LIFE ============ */
-  .day-grid {
+  /* ============ DAY IN LIFE — KOMPAKT 2-SPALTEN ============ */
+  .day-stack {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
+  .day-stack-item { display: contents; }
   .day-card {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.14);
     border-radius: var(--radius-md);
-    padding: 30px;
+    padding: 26px 28px;
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    align-items: start;
   }
   .day-time {
     font-size: 12px;
@@ -587,18 +579,29 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    padding-top: 4px;
   }
   .day-card h4 {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     letter-spacing: -0.015em;
   }
   .day-card p {
     color: rgba(255,255,255,0.78);
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  @media (max-width: 900px) {
+    .day-stack { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .day-card {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 22px 22px;
+    }
+    .day-card h4 { font-size: 18px; }
   }
 
   /* ============ STATEMENT BLOCK ============ */
@@ -613,25 +616,21 @@
     padding: 0 24px;
   }
   .statement h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-size: clamp(1.6rem, 3.4vw, 2.5rem);
     font-weight: 900;
-    line-height: 1.18;
+    line-height: 1.22;
     letter-spacing: -0.02em;
     margin-bottom: 22px;
   }
   .statement h2 .strike {
-    position: relative;
     color: var(--ink-mute);
-  }
-  .statement h2 .strike::after {
-    content: '';
-    position: absolute;
-    left: -3px; right: -3px;
-    top: 53%;
-    height: 4px;
-    background: #d44;
-    transform: rotate(-2deg);
-    border-radius: 4px;
+    text-decoration: line-through;
+    text-decoration-color: #d44;
+    text-decoration-thickness: 4px;
+    text-decoration-skip-ink: none;
+    -webkit-text-decoration-line: line-through;
+    -webkit-text-decoration-color: #d44;
+    -webkit-text-decoration-thickness: 4px;
   }
   .statement h2 .hl {
     background: var(--green);
@@ -643,11 +642,15 @@
     font-style: italic;
   }
   .statement p {
-    font-size: 18px;
+    font-size: 17px;
     color: var(--ink-soft);
     line-height: 1.65;
     max-width: 720px;
     margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    .statement { padding: 70px 0; }
+    .statement h2 { font-size: 1.5rem; line-height: 1.3; }
   }
 
   /* ============ KÖLN ============ */
@@ -681,36 +684,73 @@
     line-height: 1.6;
   }
   .koeln-map {
-    background: linear-gradient(135deg, #d8ecc8 0%, #b9e5a3 100%);
     position: relative;
     min-height: 320px;
+    overflow: hidden;
+    background: #d8ecc8;
+  }
+  .koeln-map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border: 0;
+    display: block;
+    filter: saturate(0.8) contrast(0.95);
+  }
+  .koeln-map-link {
+    position: absolute;
+    bottom: 12px; right: 12px;
+    background: rgba(255,255,255,0.95);
+    color: var(--green-darker);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 99px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 2;
+  }
+  .koeln-map-link:hover { background: white; }
+
+  /* ============ INLINE CTA BAND ============ */
+  .cta-band {
+    background: linear-gradient(135deg, #2d5022 0%, #1c3614 100%);
+    padding: 56px 0;
+    color: white;
+  }
+  .cta-band-inner {
     display: flex;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
   }
-  .koeln-map::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 60%),
-      repeating-linear-gradient(45deg, transparent 0 18px, rgba(47,90,37,0.06) 18px 19px),
-      repeating-linear-gradient(-45deg, transparent 0 18px, rgba(47,90,37,0.06) 18px 19px);
-  }
-  .koeln-pin {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-  }
-  .koeln-pin svg {
-    filter: drop-shadow(0 8px 14px rgba(0,0,0,0.2));
-  }
-  .koeln-pin-label {
-    margin-top: 10px;
-    font-weight: 800;
-    color: var(--green-darker);
-    letter-spacing: 0.06em;
+  .cta-band-eyebrow {
+    color: #b9e5a3;
+    font-style: italic;
+    font-weight: 600;
     font-size: 14px;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .cta-band h3 {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .cta-band h3 .hl {
+    background: var(--green);
+    color: white;
+    padding: 0 10px 2px;
+    border-radius: 6px;
+    display: inline-block;
+    transform: rotate(-1deg);
+    font-style: italic;
+  }
+  @media (max-width: 600px) {
+    .cta-band { padding: 42px 0; }
+    .cta-band-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
   }
 
   /* ============ FULL-WIDTH IMAGE STRIPE ============ */
@@ -953,58 +993,92 @@
     padding-left: 14px;
   }
 
-  /* ============ PROZESS ============ */
-  .process-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
-    position: relative;
-  }
-  .process-row::before {
-    content: '';
-    position: absolute;
-    top: 32px;
-    left: 8%;
-    right: 8%;
-    height: 2px;
-    background: var(--green-light);
-    z-index: 0;
+  /* ============ PROZESS — ACCORDION ============ */
+  .process-accordion {
+    max-width: 760px;
+    margin: 0 auto;
   }
   .process-step {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-  }
-  .process-num {
-    width: 64px; height: 64px;
-    border-radius: 50%;
     background: white;
-    border: 3px solid var(--green);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+  }
+  .process-step[open] {
+    box-shadow: var(--shadow-md);
+    border-color: var(--green-light);
+  }
+  .process-step summary {
+    padding: 22px 26px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    list-style: none;
+  }
+  .process-step summary::-webkit-details-marker { display: none; }
+  .process-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--green-bg);
+    border: 2px solid var(--green);
     color: var(--green-darker);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    font-weight: 900;
-    margin: 0 auto 20px;
-  }
-  .process-step h4 {
     font-size: 18px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .process-step[open] .process-num {
+    background: var(--green);
+    color: white;
+  }
+  .process-summary-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .process-summary-text h4 {
+    font-size: 17px;
     font-weight: 800;
-    margin-bottom: 8px;
+    letter-spacing: -0.01em;
   }
-  .process-step p {
-    color: var(--ink-soft);
-    font-size: 14.5px;
-    line-height: 1.55;
-  }
-  .process-step .step-time {
+  .process-summary-text .step-time {
     font-size: 12px;
     color: var(--green);
     font-weight: 700;
-    margin-top: 8px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .process-step summary::after {
+    content: '+';
+    font-size: 26px;
+    color: var(--green);
+    font-weight: 600;
+    transition: transform 0.2s ease;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .process-step[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .process-body {
+    padding: 0 26px 24px 88px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .process-cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+  }
+  @media (max-width: 600px) {
+    .process-step summary { padding: 18px 20px; gap: 14px; }
+    .process-body { padding: 0 20px 20px 76px; }
   }
 
   /* ============ FAQ ============ */
@@ -1129,7 +1203,6 @@
     .career-step { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .career-step:nth-child(2n) { border-right: none; }
     .career-step:nth-last-child(-n+2) { border-bottom: none; }
-    .day-grid { grid-template-columns: 1fr; }
     .team-grid { grid-template-columns: 1fr; }
     .team-hero { grid-template-columns: 1fr; gap: 24px; }
     .team-video-frame { max-height: 480px; }
@@ -1137,8 +1210,6 @@
     .team-banner { aspect-ratio: 4 / 3; }
     .koeln-card { grid-template-columns: 1fr; }
     .koeln-map { min-height: 200px; }
-    .process-row { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .process-row::before { display: none; }
   }
   @media (max-width: 600px) {
     section.block { padding: 70px 0; }
@@ -1166,8 +1237,8 @@
 <!-- ===================== NAV ===================== -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="#" class="logo">
-      <span class="logo-mark">Green<br/>Careers</span>
+    <a href="#" class="logo" aria-label="GreenCareers">
+      <img src="assets/logo-white.png" alt="GreenCareers" />
     </a>
     <a href="quiz.html" class="nav-cta">Jetzt bewerben</a>
   </div>
@@ -1236,7 +1307,7 @@
         <strong>GreenCareers ist Marktführer im Recruiting der grünen Branche</strong> — GaLaBau, Baumschulen, Landwirtschaft, Tiefbau, Pflanzenhandel. Über 500 zahlende Kunden, 30.000+ aktive Fachkräfte und 900+ erfolgreiche Platzierungen pro Jahr. Wir bauen unsere Position weiter aus — und du kannst Teil dieser Erfolgsstory werden.
       </p>
       <p style="margin-top: 14px">
-        Du verkaufst kein Snake Oil. Du verkaufst eine Software, die GaLaBau-Betrieben in durchschnittlich 21 Tagen passende Mitarbeiter liefert — ein messbares Ergebnis, mit dem deine Calls richtig Wirkung haben.
+        Du verkaufst kein Snake Oil. Du verkaufst eine Software, die Betrieben in der grünen Branche in durchschnittlich 45 Tagen passende Mitarbeiter liefert — ein messbares Ergebnis, mit dem deine Calls richtig Wirkung haben.
       </p>
       <div class="stats-row">
         <div class="stat">
@@ -1302,6 +1373,22 @@
           <li>… du in Teilzeit arbeiten willst — wir sind reine Vollzeit</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INLINE CTA BAND ===================== -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <p class="cta-band-eyebrow">Wenn du dich hier wiederfindest</p>
+        <h3>Dann bewirb dich. <span class="hl">Jetzt</span>.</h3>
+      </div>
+      <a href="quiz.html" class="btn-primary">
+        Jetzt bewerben
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -1418,10 +1505,10 @@
   <div class="statement-inner">
     <div class="eyebrow" style="justify-content:center; display:inline-flex">Damit klar ist, wen wir suchen</div>
     <h2 style="margin-top:14px;">
-      Wir suchen <span class="strike">Vertriebs&shy;idioten</span> <span class="hl">denkende Verkäufer</span>.
+      Wir suchen keine <span class="strike">Skript-Jünger</span> — sondern <span class="hl">Prinzipien-orientierte Verkäufer</span>.
     </h2>
     <p>
-      Wer einfach nur Skripte runterrattern will und auf Zuhören keinen Bock hat — der wird bei uns nicht glücklich. Wir machen Principle-based Selling. Heißt: gute, offene Fragen stellen, deinem Gegenüber wirklich zuhören, dich in seine Situation hineinversetzen — und so an seine echten Desires kommen. Nur dann kannst du wirklich verkaufen. Wenn dich das anspricht, sind wir der richtige Ort für dich.
+      Wer ein Skript runterrattert und aufgeschmissen ist, sobald der Gesprächspartner etwas antwortet, das nicht im Skript steht — der wird bei uns nicht glücklich. Wir machen Principle-based Selling. Heißt: selbstständig denken, gute offene Fragen stellen, wirklich zuhören, dich in dein Gegenüber hineinversetzen — und dabei heiß auf den Close bleiben. Guter Vertrieb ist sehr gute kundenorientierte Kommunikation, die zielführend ist. Wenn dich das anspricht, bist du bei uns richtig.
     </p>
   </div>
 </section>
@@ -1435,36 +1522,60 @@
       <p class="section-sub" style="color:rgba(255,255,255,0.78)">Tag-Start ist 8:30. Jeder startet selbstständig, aber wir ziehen zusammen. Hier sind die festen Anker, die unsere Woche strukturieren.</p>
     </div>
 
-    <div class="day-grid">
-      <div class="day-card">
-        <div class="day-time">Montag</div>
-        <h4>Wochen-Kick-off</h4>
-        <p>Das ganze Sales-Team bespricht KPIs und Ziele für die Woche. Klare Marschrichtung — danach geht jeder ins Calling.</p>
+    <div class="day-stack">
+      <div class="day-stack-item">
+        <div class="day-card">
+          <div class="day-time">Montag</div>
+          <div>
+            <h4>Wochen-Kick-off</h4>
+            <p>Das ganze Sales-Team bespricht KPIs und Ziele für die Woche. Klare Marschrichtung — danach geht jeder ins Calling.</p>
+          </div>
+        </div>
       </div>
-      <div class="day-card">
-        <div class="day-time">Mittwoch</div>
-        <h4>Großes Teamcoaching</h4>
-        <p>Hier kommen Probleme auf den Tisch, Fragen werden geklärt, Individualitäten besprochen. Niemand bleibt hängen, weil alle voneinander lernen.</p>
+      <div class="day-stack-item">
+        <div class="day-card">
+          <div class="day-time">Mittwoch</div>
+          <div>
+            <h4>Großes Teamcoaching</h4>
+            <p>Hier kommen Probleme auf den Tisch, Fragen werden geklärt, Individualitäten besprochen. Niemand bleibt hängen, weil alle voneinander lernen.</p>
+          </div>
+        </div>
       </div>
-      <div class="day-card">
-        <div class="day-time">Freitag</div>
-        <h4>Wochen-Closing-Call</h4>
-        <p>Woche Revue passieren lassen: Was lief, was nicht? Wie definieren wir die Ziele für nächste Woche? Klar, ehrlich, lösungsorientiert.</p>
+      <div class="day-stack-item">
+        <div class="day-card">
+          <div class="day-time">Freitag</div>
+          <div>
+            <h4>Wochen-Closing-Call</h4>
+            <p>Woche Revue passieren lassen: Was lief, was nicht? Wie definieren wir die Ziele für nächste Woche? Klar, ehrlich, lösungsorientiert.</p>
+          </div>
+        </div>
       </div>
-      <div class="day-card">
-        <div class="day-time">3 – 8× pro Woche</div>
-        <h4>Power Hours</h4>
-        <p>Alle zusammengeschaltet, alle gleichzeitig im Call — wir motivieren uns gegenseitig und ziehen zusammen die Frequenz hoch. Pure Energie.</p>
+      <div class="day-stack-item">
+        <div class="day-card">
+          <div class="day-time">3 – 8× pro Woche</div>
+          <div>
+            <h4>Power Hours</h4>
+            <p>Alle zusammengeschaltet, alle gleichzeitig im Call — wir motivieren uns gegenseitig und ziehen zusammen die Frequenz hoch. Pure Energie.</p>
+          </div>
+        </div>
       </div>
-      <div class="day-card">
-        <div class="day-time">Regelmäßig</div>
-        <h4>Sales-Challenges</h4>
-        <p>Mehrfach im Monat / Quartal: Challenges mit hochwertigen Preisen. Hier polierst du dir den Monat richtig auf — für alle, die wirklich Bock haben.</p>
+      <div class="day-stack-item">
+        <div class="day-card">
+          <div class="day-time">Regelmäßig</div>
+          <div>
+            <h4>Sales-Challenges</h4>
+            <p>Mehrfach im Monat / Quartal: Challenges mit hochwertigen Preisen. Hier polierst du dir den Monat richtig auf — für alle, die wirklich Bock haben.</p>
+          </div>
+        </div>
       </div>
-      <div class="day-card">
-        <div class="day-time">Individuell</div>
-        <h4>1:1-Coaching mit Vertriebsleitern</h4>
-        <p>Buchbar, wenn du gerade an etwas Konkretem hängst: Gatekeeper-Handling, Einwand-vs.-Vorwand, Produktwissen, Zielgruppen-Sprache. Du wirst schnell besser — und verdienst schneller mehr.</p>
+      <div class="day-stack-item">
+        <div class="day-card">
+          <div class="day-time">Individuell</div>
+          <div>
+            <h4>1:1-Coaching mit Vertriebsleitern</h4>
+            <p>Buchbar, wenn du gerade an etwas Konkretem hängst: Gatekeeper-Handling, Einwand-vs.-Vorwand, Produktwissen, Zielgruppen-Sprache. Du wirst schnell besser — und verdienst schneller mehr.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1474,15 +1585,13 @@
         <h3>Köln — 4 bis 6 Mal pro Jahr triffst du hier das ganze Team.</h3>
         <p>Du arbeitest 100 % remote von wo du willst (DACH ohne Einschränkungen, längere Aufenthalte bis 2 Monate im EU-Ausland sind ok). Aber 4 bis 6 Mal pro Jahr kommen wir alle in Köln zusammen — Sales-Days, Strategie, Team-Events. Das ist der Moment, in dem aus „remote arbeiten" echtes Team-Gefühl wird.</p>
       </div>
-      <div class="koeln-map" aria-hidden="true">
-        <div class="koeln-pin">
-          <svg width="56" height="68" viewBox="0 0 56 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 0C12.5 0 0 12.5 0 28c0 19 28 40 28 40s28-21 28-40C56 12.5 43.5 0 28 0z" fill="#2f5a25"/>
-            <circle cx="28" cy="27" r="11" fill="white"/>
-            <circle cx="28" cy="27" r="6" fill="#5a9b4a"/>
-          </svg>
-          <div class="koeln-pin-label">KÖLN</div>
-        </div>
+      <div class="koeln-map">
+        <iframe
+          loading="lazy"
+          title="Karte: Köln"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=6.85%2C50.88%2C7.05%2C50.99&amp;layer=mapnik&amp;marker=50.9375%2C6.9603"
+        ></iframe>
+        <a class="koeln-map-link" href="https://www.openstreetmap.org/?mlat=50.9375&amp;mlon=6.9603#map=12/50.9375/6.9603" target="_blank" rel="noopener noreferrer">Köln auf OpenStreetMap</a>
       </div>
     </div>
   </div>
@@ -1552,31 +1661,65 @@
       <p class="section-sub" style="margin-left:auto; margin-right:auto; text-align:center">Kein endloses Hin-und-Her. Klare Schritte, klare Entscheidungen — von beiden Seiten.</p>
     </div>
 
-    <div class="process-row">
-      <div class="process-step">
-        <div class="process-num">1</div>
-        <h4>Quiz</h4>
-        <p>63 Sekunden. Du lernst uns kennen, wir lernen dich kennen.</p>
-        <div class="step-time">heute</div>
-      </div>
-      <div class="process-step">
-        <div class="process-num">2</div>
-        <h4>15-Min-Call</h4>
-        <p>Grundvoraussetzungen kurz abstecken: Matchen wir oder nicht?</p>
-        <div class="step-time">in 2 – 4 Tagen</div>
-      </div>
-      <div class="process-step">
-        <div class="process-num">3</div>
-        <h4>Founder-Call</h4>
-        <p>Zweiter Call per Google Meet — diesmal mit Founder + Vertriebsleitern.</p>
-        <div class="step-time">innerhalb 7 Tagen</div>
-      </div>
-      <div class="process-step">
-        <div class="process-num">4</div>
-        <h4>2 Probetage</h4>
-        <p>Zwei volle Arbeitstage. Du zeigst was du kannst, wir geben Feedback. Am Ende des 2. Tages: Entscheidung von beiden Seiten.</p>
-        <div class="step-time">~ 14 Tage gesamt</div>
-      </div>
+    <div class="process-accordion">
+      <details class="process-step" open>
+        <summary>
+          <div class="process-num">1</div>
+          <div class="process-summary-text">
+            <h4>Quiz</h4>
+            <div class="step-time">heute · 63 Sekunden</div>
+          </div>
+        </summary>
+        <div class="process-body">
+          Du beantwortest uns kurz die wichtigsten Fragen — Cold-Calling-Erfahrung, Verfügbarkeit, was dich antreibt. So sehen wir auf einen Blick, ob das Profil zu unserer Stelle passt.
+        </div>
+      </details>
+
+      <details class="process-step">
+        <summary>
+          <div class="process-num">2</div>
+          <div class="process-summary-text">
+            <h4>15-Min-Call</h4>
+            <div class="step-time">in 2 – 4 Tagen · per Telefon</div>
+          </div>
+        </summary>
+        <div class="process-body">
+          Kurzer Kennenlern-Call mit einem von uns. Grundvoraussetzungen abstecken: Matchen wir oder nicht? Wir bekommen einen ersten Eindruck von deiner Stimme im Gespräch — du bekommst einen ersten Eindruck von uns.
+        </div>
+      </details>
+
+      <details class="process-step">
+        <summary>
+          <div class="process-num">3</div>
+          <div class="process-summary-text">
+            <h4>Founder-Call</h4>
+            <div class="step-time">innerhalb 7 Tagen · per Google Meet</div>
+          </div>
+        </summary>
+        <div class="process-body">
+          Zweiter, ausführlicherer Call mit Founder &amp; Vertriebsleitern. Hier reden wir über deinen Track Record, deine Vision und ob wir auf der menschlichen Ebene matchen.
+        </div>
+      </details>
+
+      <details class="process-step">
+        <summary>
+          <div class="process-num">4</div>
+          <div class="process-summary-text">
+            <h4>2 Probetage</h4>
+            <div class="step-time">~ 14 Tage gesamt · vor Ort oder remote</div>
+          </div>
+        </summary>
+        <div class="process-body">
+          Zwei volle Arbeitstage. Du arbeitest mit echtem Material an unserer echten Zielgruppe — wir sehen, wie du Gespräche führst, du siehst wie wir arbeiten. Am Ende des zweiten Tages entscheiden wir gemeinsam, ob wir den Weg zusammen gehen. Dieser Schritt ist da, damit weder du noch wir in 3 Monaten merken, dass es nicht passt.
+        </div>
+      </details>
+    </div>
+
+    <div class="process-cta-wrap">
+      <a href="quiz.html" class="btn-primary">
+        Jetzt bewerben
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
