@@ -483,6 +483,21 @@
     .info-stats { grid-template-columns: 1fr; gap: 12px; padding-top: 16px; margin-top: 16px; }
   }
 </style>
+
+<!-- ===== Meta Pixel (GreenCareers Recruiting CAPI · 1125854233946787) ===== -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1125854233946787');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></noscript>
+<!-- ===== End Meta Pixel ===== -->
+
 </head>
 <body>
 
@@ -814,7 +829,11 @@
     totalSlides: 8,
   };
 
-  // ============ UTM / Referrer einlesen ============
+  // ============ UTM / Referrer / Meta-Cookies einlesen ============
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp("(^|; )" + name + "=([^;]*)"));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
   function getTracking() {
     const p = new URLSearchParams(location.search);
     return {
@@ -825,9 +844,21 @@
       utm_term:     p.get("utm_term")     || null,
       fbclid:       p.get("fbclid")       || null,
       gclid:        p.get("gclid")        || null,
+      // Meta-Pixel-Cookies (gesetzt vom Pixel im <head>)
+      fbp:          getCookie("_fbp")     || null,
+      fbc:          getCookie("_fbc")     || null,
       referrer:     document.referrer || null,
+      event_source_url: location.href,
       user_agent:   navigator.userAgent,
     };
+  }
+  // UUID v4 für Event-ID (Pixel ↔ CAPI Deduplizierung)
+  function generateEventId() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === "x" ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 
   // ============ SLIDE NAVIGATION ============
@@ -1011,11 +1042,23 @@
 
     btnSubmit.innerHTML = "Sende...";
 
+    // Event-ID generieren — wird an Pixel UND CAPI mitgegeben → Meta dedupliziert
+    const event_id = generateEventId();
+
     const payload = Object.assign({}, state.answers, {
       vorname, nachname, email, telefon,
       cv_storage_path,
+      event_id,
       submitted_at: new Date().toISOString(),
     }, getTracking());
+
+    // ===== Browser-Pixel: Lead + SubmitApplication mit derselben event_id
+    try {
+      if (window.fbq) {
+        fbq("track", "Lead", { content_name: "Sales Recruiting Quiz" }, { eventID: event_id });
+        fbq("track", "SubmitApplication", { content_name: "Sales Recruiting Quiz" }, { eventID: event_id });
+      }
+    } catch (_) { /* fbq darf den Submit nicht blocken */ }
 
     try {
       const res = await fetch(WEBHOOK_URL, {
