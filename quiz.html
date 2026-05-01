@@ -636,15 +636,15 @@
           Zurück
         </button>
         <div class="slide-eyebrow" style="margin-top:8px">Frage 6 von 8</div>
-        <h2>Wärst du grundsätzlich bereit für <span class="hl">2 Probetage</span>?</h2>
+        <h2>Bist du bereit, <span class="hl">2 Probetage</span> für deinen Erfolg zu investieren?</h2>
         <p class="slide-sub">Vor einer Einstellung machen wir gemeinsam 2 Probetage. Damit du und wir wirklich aussagekräftig identifizieren können, ob es inhaltlich und persönlich passt — bevor beide Seiten in 3 Monaten merken, dass es nicht stimmt. Das ist genauso in deinem Sinne wie in unserem.</p>
       </div>
       <div class="answers">
         <button class="answer-btn" data-value="true" data-key="zwei_probetage_ok" data-next="7">
           <span class="answer-icon">✅</span> Ja, das macht Sinn
         </button>
-        <button class="answer-btn" data-value="unsicher" data-key="zwei_probetage_ok" data-next="7">
-          <span class="answer-icon">💬</span> Lass uns das im Gespräch klären
+        <button class="answer-btn" data-value="false" data-key="zwei_probetage_ok" data-next="reject_probetage">
+          <span class="answer-icon">🚫</span> Nein, ich will keine Zeit investieren
         </button>
       </div>
     </div>
@@ -691,6 +691,15 @@
       </div>
       <input class="text-input" type="email" id="email" placeholder="E-Mail" autocomplete="email" />
       <input class="text-input" type="tel" id="telefon" placeholder="Mobilnummer (für WhatsApp)" autocomplete="tel" />
+
+      <div class="file-input-wrap">
+        <label class="file-input-label" id="cv-label" for="cv-input">
+          📎 <strong>Lebenslauf hochladen</strong> <span style="opacity:0.7">(optional · PDF, DOCX, JPG, PNG · max 10 MB)</span>
+          <span id="cv-filename" class="filename" style="display:block;margin-top:6px;"></span>
+        </label>
+        <input id="cv-input" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+      </div>
+
       <div class="consent-row">
         <input type="checkbox" id="consent-datenschutz" />
         <label for="consent-datenschutz">
@@ -719,13 +728,20 @@
 
     <!-- ========== REJECT: keine Cold-Calling-Erfahrung (Soft) ========== -->
     <div class="slide end-card" data-slide="reject_no_cc" data-track="quiz_reject_no_cc">
+      <div style="text-align:left">
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Antwort ändern
+        </button>
+      </div>
       <div>
         <div class="reject-icon">🌱</div>
         <h2>Wir suchen aktuell <span class="hl">erfahrene Cold Caller</span>.</h2>
-        <p>Bei uns brauchst du mindestens 3 Monate echte Cold-Calling-Erfahrung, um direkt durchzustarten. Aber: Wenn du gerade einsteigen willst, lass uns deine Mail da — wir melden uns wieder, sobald wir auch Junior-Slots öffnen.</p>
+        <p>Bei uns brauchst du mindestens 3 Monate echte Cold-Calling-Erfahrung, um direkt durchzustarten. Aber: Wenn du gerade einsteigen willst, lass uns deine Daten da — wir melden uns wieder, sobald wir auch Junior-Slots öffnen.</p>
         <div id="soft-reject-form">
+          <input class="text-input" type="text" id="reject-vorname" placeholder="Vorname" style="margin-bottom:12px;" />
           <input class="text-input" type="email" id="reject-email" placeholder="Deine E-Mail" style="margin-bottom:12px;" />
-          <input class="text-input" type="text" id="reject-vorname" placeholder="Vorname (optional)" style="margin-bottom:16px;" />
+          <input class="text-input" type="tel" id="reject-telefon" placeholder="WhatsApp-Nummer (optional)" style="margin-bottom:16px;" />
           <button class="btn btn-primary" id="btn-soft-reject" style="width:100%;justify-content:center;">
             Auf die Wiedervorlage-Liste
           </button>
@@ -738,13 +754,20 @@
 
     <!-- ========== REJECT: passiv (Soft) ========== -->
     <div class="slide end-card" data-slide="reject_passive" data-track="quiz_reject_passive">
+      <div style="text-align:left">
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Antwort ändern
+        </button>
+      </div>
       <div>
         <div class="reject-icon">⏳</div>
         <h2>Wir suchen aktuell <span class="hl">aktiv Suchende</span>.</h2>
-        <p>Du brauchst spätestens in 2 – 3 Monaten den nächsten Schritt — sonst kostet uns beiden ein langer Bewerbungsprozess unnötig Zeit. Wenn du gerade nur passiv schaust, lass uns deine Mail da. Wir melden uns wieder, wenn du aktiv wechseln möchtest.</p>
+        <p>Du brauchst spätestens in 2 – 3 Monaten den nächsten Schritt — sonst kostet uns beiden ein langer Bewerbungsprozess unnötig Zeit. Wenn du gerade nur passiv schaust, lass uns deine Daten da. Wir melden uns wieder, wenn du aktiv wechseln möchtest.</p>
         <div id="passive-form">
+          <input class="text-input" type="text" id="passive-vorname" placeholder="Vorname" style="margin-bottom:12px;" />
           <input class="text-input" type="email" id="passive-email" placeholder="Deine E-Mail" style="margin-bottom:12px;" />
-          <input class="text-input" type="text" id="passive-vorname" placeholder="Vorname (optional)" style="margin-bottom:16px;" />
+          <input class="text-input" type="tel" id="passive-telefon" placeholder="WhatsApp-Nummer (optional)" style="margin-bottom:16px;" />
           <button class="btn btn-primary" id="btn-passive" style="width:100%;justify-content:center;">
             Auf die Wiedervorlage-Liste
           </button>
@@ -755,12 +778,18 @@
       </div>
     </div>
 
-    <!-- ========== REJECT: keine Probetage möglich (Hard) ========== -->
+    <!-- ========== REJECT: keine Probetage (Hard, keine Daten) ========== -->
     <div class="slide end-card" data-slide="reject_probetage" data-track="quiz_reject_probetage">
+      <div style="text-align:left">
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Antwort ändern
+        </button>
+      </div>
       <div>
         <div class="reject-icon">⏱️</div>
-        <h2>2 Probetage sind bei uns <span class="hl">nicht verhandelbar</span>.</h2>
-        <p>Wir verstehen, dass das gerade nicht passt. Wenn sich das später ändert, bewirb dich gerne nochmal — die Tür bleibt offen.</p>
+        <h2>Dann <span class="hl">passen wir nicht zueinander</span>.</h2>
+        <p>2 Probetage sind bei uns nicht verhandelbar — ohne sie können wir keine Sales-Manager einstellen. Wenn du nicht bereit bist, diese Zeit für deinen eigenen Erfolg zu investieren, bist du bei uns nicht richtig.</p>
         <p style="font-size:14px; color:var(--ink-mute);">Du kannst dieses Fenster jetzt schließen.</p>
       </div>
     </div>
@@ -773,6 +802,7 @@
   // ============ CONFIG ============
   const WEBHOOK_URL = "https://gc-tracking-dashboard.vercel.app/api/recruiting/applications/webhook";
   const SOFT_REJECT_URL = "https://gc-tracking-dashboard.vercel.app/api/recruiting/soft-reject";
+  const CV_UPLOAD_URL_API = "https://gc-tracking-dashboard.vercel.app/api/recruiting/cv-upload-url";
   // Public-safe Webhook-Secret (kommt im Header) — IMMER mit serverseitigem Check kombinieren.
   // Wert wird beim Production-Deploy via Search/Replace gesetzt.
   const WEBHOOK_SECRET = "6eda271a8b6f56cfcd316748944e522e76af3dab244cf9cb030fb4a3ef300a95";
@@ -870,6 +900,57 @@
   const btnSubmit = document.getElementById("btn-submit");
   const errEl = document.getElementById("contact-error");
 
+  // CV-File-Picker UI
+  const cvInput    = document.getElementById("cv-input");
+  const cvLabel    = document.getElementById("cv-label");
+  const cvFilename = document.getElementById("cv-filename");
+  let selectedCvFile = null;
+  if (cvInput) {
+    cvInput.addEventListener("change", () => {
+      const f = cvInput.files && cvInput.files[0];
+      if (!f) {
+        selectedCvFile = null;
+        cvLabel.classList.remove("has-file");
+        cvFilename.textContent = "";
+        return;
+      }
+      if (f.size > 10 * 1024 * 1024) {
+        alert("Datei zu groß. Max 10 MB.");
+        cvInput.value = "";
+        selectedCvFile = null;
+        return;
+      }
+      selectedCvFile = f;
+      cvLabel.classList.add("has-file");
+      cvFilename.textContent = f.name + " (" + Math.round(f.size/1024) + " KB)";
+    });
+  }
+
+  async function uploadCvIfPresent() {
+    if (!selectedCvFile) return null;
+    // 1) Signed Upload URL holen
+    const r1 = await fetch(CV_UPLOAD_URL_API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Webhook-Secret": WEBHOOK_SECRET,
+      },
+      body: JSON.stringify({
+        filename: selectedCvFile.name,
+        contentType: selectedCvFile.type,
+        size: selectedCvFile.size,
+      }),
+    });
+    if (!r1.ok) throw new Error("CV-Upload-URL konnte nicht generiert werden.");
+    const { signedUrl, path } = await r1.json();
+    // 2) Datei direkt zum Storage senden (PUT, multipart)
+    const fd = new FormData();
+    fd.append("file", selectedCvFile);
+    const r2 = await fetch(signedUrl, { method: "PUT", body: fd });
+    if (!r2.ok) throw new Error("CV-Upload zu Supabase fehlgeschlagen.");
+    return path;
+  }
+
   btnSubmit.addEventListener("click", async () => {
     errEl.classList.remove("show");
     const vorname  = document.getElementById("vorname").value.trim();
@@ -896,10 +977,21 @@
     }
 
     btnSubmit.disabled = true;
+    btnSubmit.innerHTML = selectedCvFile ? "Lade CV hoch..." : "Sende...";
+
+    let cv_storage_path = null;
+    try {
+      cv_storage_path = await uploadCvIfPresent();
+    } catch (e) {
+      // CV-Upload optional → wir senden trotzdem, loggen nur den Fehler
+      console.warn("CV-Upload fehlgeschlagen, sende ohne CV:", e.message);
+    }
+
     btnSubmit.innerHTML = "Sende...";
 
     const payload = Object.assign({}, state.answers, {
       vorname, nachname, email, telefon,
+      cv_storage_path,
       submitted_at: new Date().toISOString(),
     }, getTracking());
 
@@ -930,11 +1022,12 @@
     errEl.classList.add("show");
   }
 
-  // ============ SOFT-REJECT ============
+  // ============ SOFT-REJECT (no cold calling) ============
   const btnSR = document.getElementById("btn-soft-reject");
   btnSR.addEventListener("click", async () => {
     const email   = document.getElementById("reject-email").value.trim();
     const vorname = document.getElementById("reject-vorname").value.trim();
+    const telefon = document.getElementById("reject-telefon").value.trim();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       alert("Bitte gib eine gültige E-Mail-Adresse ein.");
       return;
@@ -949,7 +1042,7 @@
           "X-Webhook-Secret": WEBHOOK_SECRET,
         },
         body: JSON.stringify(Object.assign({
-          email, vorname,
+          email, vorname, telefon,
           reason: "no_cold_calling_experience",
         }, getTracking())),
       });
@@ -969,6 +1062,7 @@
     btnPassive.addEventListener("click", async () => {
       const email   = document.getElementById("passive-email").value.trim();
       const vorname = document.getElementById("passive-vorname").value.trim();
+      const telefon = document.getElementById("passive-telefon").value.trim();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         alert("Bitte gib eine gültige E-Mail-Adresse ein.");
         return;
@@ -983,7 +1077,7 @@
             "X-Webhook-Secret": WEBHOOK_SECRET,
           },
           body: JSON.stringify(Object.assign({
-            email, vorname,
+            email, vorname, telefon,
             reason: "passive_search_only",
           }, getTracking())),
         });
