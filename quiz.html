@@ -941,13 +941,25 @@
         size: selectedCvFile.size,
       }),
     });
-    if (!r1.ok) throw new Error("CV-Upload-URL konnte nicht generiert werden.");
+    if (!r1.ok) {
+      const err = await r1.json().catch(() => ({}));
+      throw new Error("Signed-URL fehlgeschlagen: " + (err.error || r1.status));
+    }
     const { signedUrl, path } = await r1.json();
-    // 2) Datei direkt zum Storage senden (PUT, multipart)
-    const fd = new FormData();
-    fd.append("file", selectedCvFile);
-    const r2 = await fetch(signedUrl, { method: "PUT", body: fd });
-    if (!r2.ok) throw new Error("CV-Upload zu Supabase fehlgeschlagen.");
+    // 2) Datei mit rohem Body via PUT zur Signed-URL hochladen.
+    //    Supabase erwartet Content-Type-Header passend zum file.
+    const r2 = await fetch(signedUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": selectedCvFile.type || "application/octet-stream",
+        "x-upsert": "true",
+      },
+      body: selectedCvFile,
+    });
+    if (!r2.ok) {
+      const text = await r2.text().catch(() => "");
+      throw new Error("Storage-Upload fehlgeschlagen: " + r2.status + " " + text.slice(0, 120));
+    }
     return path;
   }
 
@@ -980,11 +992,21 @@
     btnSubmit.innerHTML = selectedCvFile ? "Lade CV hoch..." : "Sende...";
 
     let cv_storage_path = null;
-    try {
-      cv_storage_path = await uploadCvIfPresent();
-    } catch (e) {
-      // CV-Upload optional → wir senden trotzdem, loggen nur den Fehler
-      console.warn("CV-Upload fehlgeschlagen, sende ohne CV:", e.message);
+    if (selectedCvFile) {
+      try {
+        cv_storage_path = await uploadCvIfPresent();
+      } catch (e) {
+        console.warn("CV-Upload fehlgeschlagen:", e.message);
+        const ok = confirm(
+          "Dein Lebenslauf konnte nicht hochgeladen werden (" + e.message + ").\n\n" +
+          "Möchtest du die Bewerbung trotzdem ohne Lebenslauf abschicken? Wir können den Lebenslauf später per Mail nachreichen."
+        );
+        if (!ok) {
+          btnSubmit.disabled = false;
+          btnSubmit.innerHTML = 'Bewerbung absenden <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
+          return;
+        }
+      }
     }
 
     btnSubmit.innerHTML = "Sende...";
