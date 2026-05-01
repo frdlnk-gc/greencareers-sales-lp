@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Green square background -->
+  <rect width="512" height="512" rx="48" fill="#4e9a3f"/>
+  <!-- White circle outline -->
+  <circle cx="256" cy="275" r="165" fill="none" stroke="white" stroke-width="22"/>
+  <!-- Stem — short, from bottom center going up, slight curve -->
+  <path d="M256 390 C256 370 254 340 252 310" fill="none" stroke="white" stroke-width="12" stroke-linecap="round"/>
+  <!-- Left leaf — elongated oval, angled upper-left -->
+  <ellipse cx="200" cy="245" rx="62" ry="22" transform="rotate(-50 200 245)" fill="white"/>
+  <!-- Center-right leaf — elongated oval, angled upper-right -->
+  <ellipse cx="278" cy="210" rx="22" ry="62" transform="rotate(20 278 210)" fill="white"/>
+  <!-- Right leaf — elongated oval, angled right -->
+  <ellipse cx="320" cy="255" rx="55" ry="20" transform="rotate(-15 320 255)" fill="white"/>
+</svg>
