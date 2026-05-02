@@ -518,28 +518,28 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
 
   <div class="card">
 
-    <!-- ========== SLIDE 1: Cold Calling Erfahrung (Filter) ========== -->
-    <div class="slide active" data-slide="1" data-track="quiz_cold_calling">
+    <!-- ========== SLIDE 1: Sales-Background (Filter) ========== -->
+    <div class="slide active" data-slide="1" data-track="quiz_sales_background">
       <div>
-        <div class="slide-eyebrow">Frage 1 von 8</div>
-        <h2>Hast du bereits <span class="hl">Cold Calling</span> gemacht?</h2>
-        <p class="slide-sub">Wir suchen Leute mit echter Outbound-Erfahrung. Sei bitte ehrlich.</p>
+        <div class="slide-eyebrow">Frage 1 von 9</div>
+        <h2>Was machst du <span class="hl">aktuell oder zuletzt</span>?</h2>
+        <p class="slide-sub">Wir adressieren Performance-Sales-Profile aller Couleur.</p>
       </div>
       <div class="answers">
-        <button class="answer-btn" data-value="0" data-key="cold_calling_erfahrung" data-next="reject_no_cc">
-          <span class="answer-icon">🚫</span> Nein, noch nie
+        <button class="answer-btn" data-value="cold-calling" data-key="sales_background" data-next="2">
+          <span class="answer-icon">📞</span> Cold Calling (Outbound B2B)
         </button>
-        <button class="answer-btn" data-value="<3" data-key="cold_calling_erfahrung" data-next="reject_no_cc">
-          <span class="answer-icon">📞</span> Weniger als 3 Monate
+        <button class="answer-btn" data-value="d2d" data-key="sales_background" data-next="2">
+          <span class="answer-icon">🚪</span> Door-to-Door / Direct Sales (Energie, Telekom, Versicherung etc.)
         </button>
-        <button class="answer-btn" data-value="3-12" data-key="cold_calling_erfahrung" data-next="2">
-          <span class="answer-icon">📈</span> 3 – 12 Monate
+        <button class="answer-btn" data-value="struktur" data-key="sales_background" data-next="2">
+          <span class="answer-icon">🤝</span> Strukturvertrieb / Finanzvertrieb (DVAG, Swiss Life, Tecis etc.)
         </button>
-        <button class="answer-btn" data-value="1-3y" data-key="cold_calling_erfahrung" data-next="2">
-          <span class="answer-icon">🔥</span> 1 – 3 Jahre
+        <button class="answer-btn" data-value="inside-sales" data-key="sales_background" data-next="2">
+          <span class="answer-icon">💼</span> Inside Sales / SDR / BDR (B2B, Agentur, SaaS etc.)
         </button>
-        <button class="answer-btn" data-value="3+" data-key="cold_calling_erfahrung" data-next="2">
-          <span class="answer-icon">🚀</span> Mehr als 3 Jahre
+        <button class="answer-btn" data-value="none" data-key="sales_background" data-next="reject_no_sales">
+          <span class="answer-icon">🚫</span> Bisher kein aktiver Sales
         </button>
       </div>
     </div>
@@ -547,11 +547,11 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
     <!-- ========== SLIDE 2: Aktuelle Tätigkeit ========== -->
     <div class="slide" data-slide="2" data-track="quiz_taetigkeit">
       <div>
-        <div class="slide-eyebrow">Frage 2 von 8</div>
-        <h2>Was machst du <span class="hl">aktuell beruflich</span>?</h2>
-        <p class="slide-sub">2 – 3 Sätze reichen. Was ist dein Job, wie lange schon, was gefällt dir, was nicht?</p>
+        <div class="slide-eyebrow">Frage 2 von 9</div>
+        <h2>Erzähl uns kurz: <span class="hl">Was machst du aktuell genau</span>?</h2>
+        <p class="slide-sub">2 – 3 Sätze reichen.</p>
       </div>
-      <textarea class="textarea-input" id="aktuelle-taetigkeit" placeholder="z.B. Ich bin seit 14 Monaten als Setter bei einer SaaS-Agentur, mache 80+ Calls pro Tag, will aber endlich auch closen lernen…" maxlength="800"></textarea>
+      <textarea class="textarea-input" id="aktuelle-taetigkeit" placeholder="z.B. Ich bin seit 14 Monaten im Direktvertrieb für Solar, mache 30+ Haustürkontakte am Tag…" maxlength="800"></textarea>
       <div class="actions">
         <button class="btn btn-secondary" data-back>Zurück</button>
         <button class="btn btn-primary" data-next="3" disabled id="btn-2">
@@ -561,35 +561,55 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
       </div>
     </div>
 
-    <!-- ========== SLIDE 3: Sport-Mindset ========== -->
-    <div class="slide" data-slide="3" data-track="quiz_sport">
+    <!-- ========== SLIDE 3: Erfahrungstiefe ========== -->
+    <div class="slide" data-slide="3" data-track="quiz_experience">
       <div>
         <button class="back-link" data-back>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           Zurück
         </button>
-        <div class="slide-eyebrow" style="margin-top:8px">Frage 3 von 8</div>
-        <h2>Wie ist dein <span class="hl">Verhältnis zum Sport</span>?</h2>
-        <p class="slide-sub">Spielt im Sales eine Rolle — Disziplin, Wettkampf, Durchhaltevermögen kommen oft genau daher.</p>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 3 von 9</div>
+        <h2>Wie viel <span class="hl">Sales-Erfahrung</span> bringst du mit?</h2>
       </div>
       <div class="answers">
-        <button class="answer-btn" data-value="leistungssport" data-key="sport_mindset" data-next="4">
-          <span class="answer-icon">🏆</span> Ich war/bin Leistungssportler
+        <button class="answer-btn" data-value="<3" data-key="sales_experience" data-next="reject_short">
+          <span class="answer-icon">⏱</span> Weniger als 3 Monate
         </button>
-        <button class="answer-btn" data-value="mannschaft" data-key="sport_mindset" data-next="4">
-          <span class="answer-icon">⚽</span> Mannschaftssport, regelmäßig
+        <button class="answer-btn" data-value="3-12" data-key="sales_experience" data-next="4">
+          <span class="answer-icon">📈</span> 3 – 12 Monate
         </button>
-        <button class="answer-btn" data-value="sport-aktiv" data-key="sport_mindset" data-next="4">
-          <span class="answer-icon">💪</span> Sportlich aktiv, kein Wettkampf
+        <button class="answer-btn" data-value="1-3y" data-key="sales_experience" data-next="4">
+          <span class="answer-icon">🔥</span> 1 – 3 Jahre
         </button>
-        <button class="answer-btn" data-value="kein-sport" data-key="sport_mindset" data-next="4">
-          <span class="answer-icon">🛋️</span> Sport ist nicht mein Ding
+        <button class="answer-btn" data-value="3+" data-key="sales_experience" data-next="4">
+          <span class="answer-icon">🚀</span> Mehr als 3 Jahre
         </button>
       </div>
     </div>
 
-    <!-- ========== SLIDE 4 (Layout): Was du verkaufst ========== -->
-    <div class="slide" data-slide="4" data-track="quiz_info_product">
+    <!-- ========== SLIDE 4: Wochenstunden / Hustle ========== -->
+    <div class="slide" data-slide="4" data-track="quiz_wochenstunden">
+      <div>
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Zurück
+        </button>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 4 von 9</div>
+        <h2>Wie viele Stunden pro Woche willst du <span class="hl">Sales Calls führen</span>?</h2>
+        <p class="slide-sub">(wir bieten ausschließlich Vollzeit-Stellen an)</p>
+      </div>
+      <div class="answers">
+        <button class="answer-btn" data-value="40" data-key="wochenstunden" data-next="info_product">
+          <span class="answer-icon">👀</span> 40 Stunden pro Woche (Vollzeit)
+        </button>
+        <button class="answer-btn" data-value="40plus" data-key="wochenstunden" data-next="info_product">
+          <span class="answer-icon">🚀</span> 40+ Stunden pro Woche (Hustle-Modus)
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== INFO: Was du verkaufst ========== -->
+    <div class="slide" data-slide="info_product" data-track="quiz_info_product">
       <div>
         <div class="slide-eyebrow">Kurz zwischendurch</div>
         <h2>Damit du weißt, <span class="hl">was du verkaufst</span>:</h2>
@@ -597,7 +617,7 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
       <div class="info-slide">
         <div class="info-slide-eyebrow">Marktführer · Recruiting · Grüne Branche</div>
         <h3>Du verkaufst nichts, wofür du dich beim Closen rechtfertigen musst.</h3>
-        <p>GreenCareers ist die führende Recruiting-Plattform für die grüne Branche — GaLaBau, Baumschulen, Landwirtschaft, Tiefbau, Pflanzenhandel. Betriebe in der grünen Branche besetzen ihre offenen Stellen über uns in durchschnittlich 45 Tagen. 500+ zahlende Kunden vertrauen uns. Es funktioniert — und das macht Cold Calling ehrlich gesagt einfacher.</p>
+        <p>GreenCareers ist die führende Recruiting-Plattform für die grüne Branche — GaLaBau, Baumschulen, Landwirtschaft, Tiefbau, Pflanzenhandel. Betriebe in der grünen Branche besetzen ihre offenen Stellen über uns in durchschnittlich 45 Tagen. 500+ zahlende Kunden vertrauen uns. Es funktioniert — und das macht den Vertrieb ehrlich gesagt einfacher.</p>
         <div class="info-stats">
           <div>
             <div class="info-stat-num">500+</div>
@@ -622,24 +642,51 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
       </div>
     </div>
 
-    <!-- ========== SLIDE 5: Wechselbereitschaft ========== -->
-    <div class="slide" data-slide="5" data-track="quiz_wechsel">
+    <!-- ========== SLIDE 5: Sport-Mindset (kein Reject) ========== -->
+    <div class="slide" data-slide="5" data-track="quiz_sport">
       <div>
         <button class="back-link" data-back>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           Zurück
         </button>
-        <div class="slide-eyebrow" style="margin-top:8px">Frage 5 von 8</div>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 5 von 9</div>
+        <h2>Wie ist dein <span class="hl">Verhältnis zum Sport</span>?</h2>
+        <p class="slide-sub">Spielt im Sales eine Rolle — Disziplin, Wettkampf, Durchhaltevermögen kommen oft genau daher.</p>
+      </div>
+      <div class="answers">
+        <button class="answer-btn" data-value="leistungssport" data-key="sport_mindset" data-next="6">
+          <span class="answer-icon">🏆</span> Ich war/bin Leistungssportler
+        </button>
+        <button class="answer-btn" data-value="mannschaft" data-key="sport_mindset" data-next="6">
+          <span class="answer-icon">⚽</span> Mannschaftssport, regelmäßig
+        </button>
+        <button class="answer-btn" data-value="sport-aktiv" data-key="sport_mindset" data-next="6">
+          <span class="answer-icon">💪</span> Sportlich aktiv, kein Wettkampf
+        </button>
+        <button class="answer-btn" data-value="kein-sport" data-key="sport_mindset" data-next="6">
+          <span class="answer-icon">🛋️</span> Sport ist nicht mein Ding
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== SLIDE 6: Wechselbereitschaft ========== -->
+    <div class="slide" data-slide="6" data-track="quiz_wechsel">
+      <div>
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Zurück
+        </button>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 6 von 9</div>
         <h2>Wann könntest du <span class="hl">frühestens starten</span>?</h2>
       </div>
       <div class="answers">
-        <button class="answer-btn" data-value="sofort" data-key="wechselbereitschaft" data-next="6">
+        <button class="answer-btn" data-value="sofort" data-key="wechselbereitschaft" data-next="7">
           <span class="answer-icon">⚡</span> Sofort / in 2 Wochen
         </button>
-        <button class="answer-btn" data-value="4w" data-key="wechselbereitschaft" data-next="6">
+        <button class="answer-btn" data-value="4w" data-key="wechselbereitschaft" data-next="7">
           <span class="answer-icon">📆</span> In 4 Wochen
         </button>
-        <button class="answer-btn" data-value="2-3m" data-key="wechselbereitschaft" data-next="6">
+        <button class="answer-btn" data-value="2-3m" data-key="wechselbereitschaft" data-next="7">
           <span class="answer-icon">🗓️</span> In 2 – 3 Monaten (Kündigungsfrist)
         </button>
         <button class="answer-btn" data-value="passiv" data-key="wechselbereitschaft" data-next="reject_passive">
@@ -648,29 +695,28 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
       </div>
     </div>
 
-    <!-- ========== SLIDE 6: 2 Probetage ========== -->
-    <div class="slide" data-slide="6" data-track="quiz_probetage">
+    <!-- ========== SLIDE 7: Verantwortung ========== -->
+    <div class="slide" data-slide="7" data-track="quiz_verantwortung">
       <div>
         <button class="back-link" data-back>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           Zurück
         </button>
-        <div class="slide-eyebrow" style="margin-top:8px">Frage 6 von 8</div>
-        <h2>Bist du bereit, <span class="hl">2 Probetage</span> für deinen Erfolg zu investieren?</h2>
-        <p class="slide-sub">Vor einer Einstellung machen wir gemeinsam 2 Probetage. Damit du und wir wirklich aussagekräftig identifizieren können, ob es inhaltlich und persönlich passt — bevor beide Seiten in 3 Monaten merken, dass es nicht stimmt. Das ist genauso in deinem Sinne wie in unserem.</p>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 7 von 9</div>
+        <h2>Kannst du (wirklich) <span class="hl">Verantwortung</span> für dich und deine Ergebnisse übernehmen?</h2>
       </div>
       <div class="answers">
-        <button class="answer-btn" data-value="true" data-key="zwei_probetage_ok" data-next="7">
-          <span class="answer-icon">✅</span> Ja, das macht Sinn
+        <button class="answer-btn" data-value="ja" data-key="verantwortung" data-next="info_process">
+          <span class="answer-icon">🚀</span> Ja klar!
         </button>
-        <button class="answer-btn" data-value="false" data-key="zwei_probetage_ok" data-next="reject_probetage">
-          <span class="answer-icon">🚫</span> Nein, ich will keine Zeit investieren
+        <button class="answer-btn" data-value="unsicher" data-key="verantwortung" data-next="reject_responsibility">
+          <span class="answer-icon">🚫</span> Ich bin mir nicht sicher
         </button>
       </div>
     </div>
 
-    <!-- ========== SLIDE 7 (Layout): Wie es weitergeht ========== -->
-    <div class="slide" data-slide="7" data-track="quiz_info_process">
+    <!-- ========== INFO: Wie es weitergeht ========== -->
+    <div class="slide" data-slide="info_process" data-track="quiz_info_process">
       <div>
         <div class="slide-eyebrow">Bevor wir Kontaktdaten brauchen</div>
         <h2>So geht es <span class="hl">weiter</span>:</h2>
@@ -686,22 +732,53 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
         </li>
         <li>
           <span class="num">3</span>
-          <div><strong>2 Probetage</strong>Du zeigst was du kannst, wir geben Feedback. Entscheidung am Ende.</div>
+          <div><strong>Persönliches Kennenlernen</strong>In Köln. Wir besprechen dann die nächsten Schritte gemeinsam.</div>
         </li>
       </ul>
       <div class="actions">
         <button class="btn btn-secondary" data-back>Zurück</button>
         <button class="btn btn-primary" data-next="8">
-          Weiter zu deinen Kontaktdaten
+          Weiter
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
 
-    <!-- ========== SLIDE 8: Name + E-Mail + Telefon ========== -->
-    <div class="slide" data-slide="8" data-track="quiz_contact">
+    <!-- ========== SLIDE 8: Lebenslauf (eigene Frage, optional) ========== -->
+    <div class="slide" data-slide="8" data-track="quiz_cv">
       <div>
-        <div class="slide-eyebrow">Letzter Schritt</div>
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Zurück
+        </button>
+        <div class="slide-eyebrow" style="margin-top:8px">Frage 8 von 9</div>
+        <h2>Hast du einen <span class="hl">Lebenslauf</span> zur Hand?</h2>
+        <p class="slide-sub">Optional. Akzeptierte Formate: PDF, DOCX, JPG, PNG · max 10 MB.</p>
+      </div>
+      <div class="file-input-wrap">
+        <label class="file-input-label" id="cv-label" for="cv-input">
+          📎 <strong>Hier klicken und Datei hochladen</strong>
+          <span id="cv-filename" class="filename" style="display:block;margin-top:6px;"></span>
+        </label>
+        <input id="cv-input" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary" data-back>Zurück</button>
+        <button class="btn btn-primary" data-next="9">
+          Weiter
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== SLIDE 9: Name + E-Mail + Telefon ========== -->
+    <div class="slide" data-slide="9" data-track="quiz_contact">
+      <div>
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Zurück
+        </button>
+        <div class="slide-eyebrow" style="margin-top:8px">Letzter Schritt · Frage 9 von 9</div>
         <h2>Wie können wir dich <span class="hl">erreichen</span>?</h2>
         <p class="slide-sub">Wir melden uns innerhalb von 48 Stunden per WhatsApp.</p>
       </div>
@@ -711,14 +788,6 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
       </div>
       <input class="text-input" type="email" id="email" placeholder="E-Mail" autocomplete="email" />
       <input class="text-input" type="tel" id="telefon" placeholder="Mobilnummer (für WhatsApp)" autocomplete="tel" />
-
-      <div class="file-input-wrap">
-        <label class="file-input-label" id="cv-label" for="cv-input">
-          📎 <strong>Lebenslauf hochladen</strong> <span style="opacity:0.7">(optional · PDF, DOCX, JPG, PNG · max 10 MB)</span>
-          <span id="cv-filename" class="filename" style="display:block;margin-top:6px;"></span>
-        </label>
-        <input id="cv-input" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-      </div>
 
       <div class="consent-row">
         <input type="checkbox" id="consent-datenschutz" />
@@ -746,8 +815,8 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
       </div>
     </div>
 
-    <!-- ========== REJECT: keine Cold-Calling-Erfahrung (Soft) ========== -->
-    <div class="slide end-card" data-slide="reject_no_cc" data-track="quiz_reject_no_cc">
+    <!-- ========== HARD REJECT: kein aktiver Sales ========== -->
+    <div class="slide end-card" data-slide="reject_no_sales" data-track="quiz_reject_no_sales">
       <div style="text-align:left">
         <button class="back-link" data-back>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -756,23 +825,29 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
       </div>
       <div>
         <div class="reject-icon">🌱</div>
-        <h2>Wir suchen aktuell <span class="hl">erfahrene Cold Caller</span>.</h2>
-        <p>Bei uns brauchst du mindestens 3 Monate echte Cold-Calling-Erfahrung, um direkt durchzustarten. Aber: Wenn du gerade einsteigen willst, lass uns deine Daten da — wir melden uns wieder, sobald wir auch Junior-Slots öffnen.</p>
-        <div id="soft-reject-form">
-          <input class="text-input" type="text" id="reject-vorname" placeholder="Vorname" style="margin-bottom:12px;" />
-          <input class="text-input" type="email" id="reject-email" placeholder="Deine E-Mail" style="margin-bottom:12px;" />
-          <input class="text-input" type="tel" id="reject-telefon" placeholder="WhatsApp-Nummer (optional)" style="margin-bottom:16px;" />
-          <button class="btn btn-primary" id="btn-soft-reject" style="width:100%;justify-content:center;">
-            Auf die Wiedervorlage-Liste
-          </button>
-        </div>
-        <div id="soft-reject-done" style="display:none;">
-          <p style="color:var(--green-darker); font-weight:700;">✓ Eingetragen — wir melden uns, sobald wir Junior-Slots öffnen.</p>
-        </div>
+        <h2>Es passt leider <span class="hl">nicht zu uns</span>.</h2>
+        <p>Wir suchen für diese Rolle Profile mit echter Performance-Sales-Erfahrung. Ohne aktiven Sales-Background können wir dich aktuell nicht onboarden — alles Gute für deinen weiteren Weg.</p>
+        <p style="font-size:14px; color:var(--ink-mute);">Du kannst dieses Fenster jetzt schließen.</p>
       </div>
     </div>
 
-    <!-- ========== REJECT: passiv (Soft) ========== -->
+    <!-- ========== HARD REJECT: weniger als 3 Monate Erfahrung ========== -->
+    <div class="slide end-card" data-slide="reject_short" data-track="quiz_reject_short">
+      <div style="text-align:left">
+        <button class="back-link" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Antwort ändern
+        </button>
+      </div>
+      <div>
+        <div class="reject-icon">⏱️</div>
+        <h2>Es passt leider <span class="hl">nicht zu uns</span>.</h2>
+        <p>Wir brauchen mindestens 3 Monate aktive Sales-Erfahrung, um dich direkt durchstarten zu lassen. Komm gerne in ein paar Monaten wieder, wenn du mehr Erfahrung gesammelt hast.</p>
+        <p style="font-size:14px; color:var(--ink-mute);">Du kannst dieses Fenster jetzt schließen.</p>
+      </div>
+    </div>
+
+    <!-- ========== HARD REJECT: passiv ========== -->
     <div class="slide end-card" data-slide="reject_passive" data-track="quiz_reject_passive">
       <div style="text-align:left">
         <button class="back-link" data-back>
@@ -782,24 +857,14 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
       </div>
       <div>
         <div class="reject-icon">⏳</div>
-        <h2>Wir suchen aktuell <span class="hl">aktiv Suchende</span>.</h2>
-        <p>Du brauchst spätestens in 2 – 3 Monaten den nächsten Schritt — sonst kostet uns beiden ein langer Bewerbungsprozess unnötig Zeit. Wenn du gerade nur passiv schaust, lass uns deine Daten da. Wir melden uns wieder, wenn du aktiv wechseln möchtest.</p>
-        <div id="passive-form">
-          <input class="text-input" type="text" id="passive-vorname" placeholder="Vorname" style="margin-bottom:12px;" />
-          <input class="text-input" type="email" id="passive-email" placeholder="Deine E-Mail" style="margin-bottom:12px;" />
-          <input class="text-input" type="tel" id="passive-telefon" placeholder="WhatsApp-Nummer (optional)" style="margin-bottom:16px;" />
-          <button class="btn btn-primary" id="btn-passive" style="width:100%;justify-content:center;">
-            Auf die Wiedervorlage-Liste
-          </button>
-        </div>
-        <div id="passive-done" style="display:none;">
-          <p style="color:var(--green-darker); font-weight:700;">✓ Eingetragen — bis dann.</p>
-        </div>
+        <h2>Es passt leider <span class="hl">nicht zu uns</span>.</h2>
+        <p>Wir suchen aktiv Suchende mit konkreter Wechselabsicht — passive Suche kostet beiden Seiten unnötig Zeit. Melde dich gerne wieder, wenn du aktiv wechseln möchtest.</p>
+        <p style="font-size:14px; color:var(--ink-mute);">Du kannst dieses Fenster jetzt schließen.</p>
       </div>
     </div>
 
-    <!-- ========== REJECT: keine Probetage (Hard, keine Daten) ========== -->
-    <div class="slide end-card" data-slide="reject_probetage" data-track="quiz_reject_probetage">
+    <!-- ========== HARD REJECT: keine Verantwortung ========== -->
+    <div class="slide end-card" data-slide="reject_responsibility" data-track="quiz_reject_responsibility">
       <div style="text-align:left">
         <button class="back-link" data-back>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -807,9 +872,9 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
         </button>
       </div>
       <div>
-        <div class="reject-icon">⏱️</div>
-        <h2>Dann <span class="hl">passen wir nicht zueinander</span>.</h2>
-        <p>2 Probetage sind bei uns nicht verhandelbar — ohne sie können wir keine Sales-Manager einstellen. Wenn du nicht bereit bist, diese Zeit für deinen eigenen Erfolg zu investieren, bist du bei uns nicht richtig.</p>
+        <div class="reject-icon">🎯</div>
+        <h2>Es passt leider <span class="hl">nicht zu uns</span>.</h2>
+        <p>Performance-Sales bei uns bedeutet, voll Verantwortung für die eigenen Ergebnisse zu übernehmen. Wer da unsicher ist, ist bei uns nicht richtig — und das ist ehrlich gemeint.</p>
         <p style="font-size:14px; color:var(--ink-mute);">Du kannst dieses Fenster jetzt schließen.</p>
       </div>
     </div>
@@ -821,7 +886,6 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
 (function() {
   // ============ CONFIG ============
   const WEBHOOK_URL = "https://gc-tracking-dashboard.vercel.app/api/recruiting/applications/webhook";
-  const SOFT_REJECT_URL = "https://gc-tracking-dashboard.vercel.app/api/recruiting/soft-reject";
   const CV_UPLOAD_URL_API = "https://gc-tracking-dashboard.vercel.app/api/recruiting/cv-upload-url";
   // Public-safe Webhook-Secret (kommt im Header) — IMMER mit serverseitigem Check kombinieren.
   // Wert wird beim Production-Deploy via Search/Replace gesetzt.
@@ -831,7 +895,7 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
   const state = {
     answers: {},
     slidesVisited: ["1"],
-    totalSlides: 8,
+    totalSlides: 9,
   };
 
   // ============ UTM / Referrer / Meta-Cookies einlesen ============
@@ -1090,76 +1154,6 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
   function showError(msg) {
     errEl.textContent = msg;
     errEl.classList.add("show");
-  }
-
-  // ============ SOFT-REJECT (no cold calling) ============
-  const btnSR = document.getElementById("btn-soft-reject");
-  btnSR.addEventListener("click", async () => {
-    const email   = document.getElementById("reject-email").value.trim();
-    const vorname = document.getElementById("reject-vorname").value.trim();
-    const telefon = document.getElementById("reject-telefon").value.trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert("Bitte gib eine gültige E-Mail-Adresse ein.");
-      return;
-    }
-    btnSR.disabled = true;
-    btnSR.innerHTML = "Sende...";
-    try {
-      const res = await fetch(SOFT_REJECT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Webhook-Secret": WEBHOOK_SECRET,
-        },
-        body: JSON.stringify(Object.assign({
-          email, vorname, telefon,
-          reason: "no_cold_calling_experience",
-        }, getTracking())),
-      });
-      if (!res.ok) throw new Error("Server error " + res.status);
-      document.getElementById("soft-reject-form").style.display = "none";
-      document.getElementById("soft-reject-done").style.display = "block";
-    } catch (e) {
-      alert("Eintragung fehlgeschlagen. Bitte erneut versuchen.");
-      btnSR.disabled = false;
-      btnSR.innerHTML = "Auf die Wiedervorlage-Liste";
-    }
-  });
-
-  // ============ PASSIVE SOFT-REJECT ============
-  const btnPassive = document.getElementById("btn-passive");
-  if (btnPassive) {
-    btnPassive.addEventListener("click", async () => {
-      const email   = document.getElementById("passive-email").value.trim();
-      const vorname = document.getElementById("passive-vorname").value.trim();
-      const telefon = document.getElementById("passive-telefon").value.trim();
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert("Bitte gib eine gültige E-Mail-Adresse ein.");
-        return;
-      }
-      btnPassive.disabled = true;
-      btnPassive.innerHTML = "Sende...";
-      try {
-        const res = await fetch(SOFT_REJECT_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Webhook-Secret": WEBHOOK_SECRET,
-          },
-          body: JSON.stringify(Object.assign({
-            email, vorname, telefon,
-            reason: "passive_search_only",
-          }, getTracking())),
-        });
-        if (!res.ok) throw new Error("Server error " + res.status);
-        document.getElementById("passive-form").style.display = "none";
-        document.getElementById("passive-done").style.display = "block";
-      } catch (e) {
-        alert("Eintragung fehlgeschlagen. Bitte erneut versuchen.");
-        btnPassive.disabled = false;
-        btnPassive.innerHTML = "Auf die Wiedervorlage-Liste";
-      }
-    });
   }
 
   // ============ INIT ============
