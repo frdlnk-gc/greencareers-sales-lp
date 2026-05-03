@@ -853,6 +853,55 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
   // ============ CONFIG ============
   const WEBHOOK_URL = "https://gc-tracking-dashboard.vercel.app/api/recruiting/applications/webhook";
   const CV_UPLOAD_URL_API = "https://gc-tracking-dashboard.vercel.app/api/recruiting/cv-upload-url";
+  const FUNNEL_ENDPOINT = "https://gc-tracking-dashboard.vercel.app/api/recruiting/funnel-event";
+
+  // ============ FUNNEL TRACKING ============
+  function gcFunnelSessionId() {
+    try {
+      var k = "gc_funnel_session_id";
+      var sid = localStorage.getItem(k);
+      if (!sid) {
+        sid = (window.crypto && crypto.randomUUID)
+          ? crypto.randomUUID()
+          : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+              var r = Math.random() * 16 | 0, v = c === "x" ? r : (r & 0x3 | 0x8);
+              return v.toString(16);
+            });
+        localStorage.setItem(k, sid);
+      }
+      return sid;
+    } catch (_) {
+      // Fallback: in-memory
+      if (!window._gc_sid) window._gc_sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : Date.now() + "-" + Math.random();
+      return window._gc_sid;
+    }
+  }
+  function trackFunnelEvent(eventType, slideId) {
+    try {
+      var p = new URLSearchParams(location.search);
+      var payload = {
+        session_id:   gcFunnelSessionId(),
+        event_type:   eventType,
+        slide_id:     slideId || null,
+        utm_source:   p.get("utm_source")   || null,
+        utm_medium:   p.get("utm_medium")   || null,
+        utm_campaign: p.get("utm_campaign") || null,
+        utm_content:  p.get("utm_content")  || null,
+        utm_term:     p.get("utm_term")     || null,
+        fbclid:       p.get("fbclid")       || null,
+        gclid:        p.get("gclid")        || null,
+        referrer:     document.referrer     || null,
+        page_url:     location.href,
+        user_agent:   navigator.userAgent,
+      };
+      fetch(FUNNEL_ENDPOINT, {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(payload),
+        keepalive: true,
+      }).catch(function() {});
+    } catch (_) {}
+  }
   // Public-safe Webhook-Secret (kommt im Header) — IMMER mit serverseitigem Check kombinieren.
   // Wert wird beim Production-Deploy via Search/Replace gesetzt.
   const WEBHOOK_SECRET = "6eda271a8b6f56cfcd316748944e522e76af3dab244cf9cb030fb4a3ef300a95";
@@ -905,6 +954,8 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
     state.slidesVisited.push(String(id));
     updateProgress();
     window.scrollTo({ top: 0, behavior: "smooth" });
+    // Funnel-Tracking
+    trackFunnelEvent("slide_view", String(id));
   }
 
   function updateProgress() {
@@ -1109,8 +1160,10 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
         throw new Error(errBody.error || ("Status " + res.status));
       }
       // Success
+      trackFunnelEvent("submit_success");
       showSlide("end");
     } catch (e) {
+      trackFunnelEvent("submit_failed");
       showError("Senden fehlgeschlagen: " + e.message + ". Bitte erneut versuchen oder direkt bewerbung@green-careers.de schreiben.");
       btnSubmit.disabled = false;
       btnSubmit.innerHTML = 'Bewerbung absenden <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
@@ -1124,6 +1177,8 @@ src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></
 
   // ============ INIT ============
   updateProgress();
+  // Initial-Slide-1-View tracken (showSlide() wird für Slide 1 nicht aufgerufen, weil sie schon "active" ist)
+  trackFunnelEvent("slide_view", "1");
 })();
 </script>
 

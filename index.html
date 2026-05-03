@@ -1252,6 +1252,76 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1125854233946787&ev=PageView&noscript=1"/></noscript>
 <!-- ===== End Meta Pixel ===== -->
 
+<!-- ===== GreenCareers Funnel-Tracker (1st-Party) ===== -->
+<script>
+(function() {
+  var ENDPOINT = "https://gc-tracking-dashboard.vercel.app/api/recruiting/funnel-event";
+
+  // Stable Session-ID via localStorage
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === "x" ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  function sessionId() {
+    try {
+      var k = "gc_funnel_session_id";
+      var sid = localStorage.getItem(k);
+      if (!sid) { sid = uuid(); localStorage.setItem(k, sid); }
+      return sid;
+    } catch (_) { return uuid(); /* localStorage blocked → wegwerf-id */ }
+  }
+
+  function getCookie(name) {
+    var m = document.cookie.match(new RegExp("(^|; )" + name + "=([^;]*)"));
+    return m ? decodeURIComponent(m[2]) : null;
+  }
+
+  function getTracking() {
+    var p = new URLSearchParams(location.search);
+    return {
+      utm_source:   p.get("utm_source")   || null,
+      utm_medium:   p.get("utm_medium")   || null,
+      utm_campaign: p.get("utm_campaign") || null,
+      utm_content:  p.get("utm_content")  || null,
+      utm_term:     p.get("utm_term")     || null,
+      fbclid:       p.get("fbclid")       || getCookie("_fbc") || null,
+      gclid:        p.get("gclid")        || null,
+      referrer:     document.referrer     || null,
+      page_url:     location.href,
+      user_agent:   navigator.userAgent,
+    };
+  }
+
+  // Globale API für quiz.html (gleiche Funktion-Logik dort dupliziert,
+  // hier definiert für ggf. Inline-Reuse)
+  window.GCFunnel = window.GCFunnel || {
+    track: function(eventType, slideId) {
+      try {
+        var payload = Object.assign({
+          session_id: sessionId(),
+          event_type: eventType,
+          slide_id:   slideId || null,
+        }, getTracking());
+        // Fire-and-forget; auch beim Page-Unload nutzbar via keepalive
+        fetch(ENDPOINT, {
+          method:  "POST",
+          headers: { "Content-Type": "application/json" },
+          body:    JSON.stringify(payload),
+          keepalive: true,
+        }).catch(function() { /* silent */ });
+      } catch (_) { /* never break the page */ }
+    }
+  };
+
+  // LP-View feuern
+  window.GCFunnel.track("lp_view");
+})();
+</script>
+<!-- ===== End Funnel-Tracker ===== -->
+
 </head>
 <body>
 
